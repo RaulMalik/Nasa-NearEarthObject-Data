@@ -1,0 +1,22 @@
+project_name: nasa-neo-risk-platform
+
+ingest:
+  source: live              # live | synthetic
+  api_base: "https://api.nasa.gov/neo/rest/v1/feed"
+  chunk_days: 7             # NASA feed allows at most a 7-day range per request
+
+window:
+  start: "2024-01-01"
+  end: "2024-07-01"
+
+cleaning:
+  max_miss_distance_lunar: 200.0   # drop far-field noise beyond ~200 lunar distances
+
+risk:
+  w_size: 0.40
+  w_proximity: 0.35
+  w_velocity: 0.15
+  w_hazard: 0.10
+
+anomaly:
+  contamination: 0.02
